@@ -1,0 +1,37 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+class godnosc
+{	
+private :
+	string imie="Jan";
+	string nazwisko="Kowalski";
+public :
+	void czytaj_dane(string im,string nazw)
+	{
+		imie=im;
+		nazwisko=nazw;
+		
+	}
+	void zapisz_dane_do_pliku()
+	{
+		fstream plik;
+		plik.open("dane.txt");
+		plik << imie <<" "<<nazwisko;
+		plik.close();
+	}
+	void czytaj_dane_z_pliku()
+	{
+		string nazwa;
+		fstream plik;
+		plik.open("dane.txt");
+		getline(plik,nazwa);
+		cout<<nazwa<<endl;
+		plik.close();
+	}
+};
+int main()
+{
+	godnosc osoba;
+	return 0;
+}
