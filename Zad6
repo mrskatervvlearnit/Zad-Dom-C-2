@@ -1,0 +1,23 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+int main()
+{
+	string buf;
+	cout<<"Podaj nazwe pliku"<<endl;
+	cin>>buf;
+	buf+=".txt";
+	fstream plik;
+	plik.open(buf.c_str());
+	if(plik)
+	{
+		while(!plik.eof())
+		{
+			getline(plik,buf);
+			cout<<buf<<endl;
+		}
+	}
+	else cout<<"Nie znalaziono pliku!"<<endl;
+	plik.close();
+	return 0;
+}
