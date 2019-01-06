@@ -1,21 +1,27 @@
 #include <iostream>
+#include <fstream>
+#include <string>
 using namespace std;
 int main() {
-	int ascii[128]={0};
-	string zdanie;
-	cin>>zdanie;
-	for(int i=0;i<zdanie.length();i++)
-	{
-		ascii[(int)zdanie[i]]++;
-	}
-	int ile=0,ktore=0;
-	for(int i=0;i<128;i++)
-	{
-		if(ascii[i]>ile)
-		{
-			ktore=i;
-			ile=ascii[i];
+	fstream plik;
+	plik.open("nazwa.txt", ios::in | ios::out);
+	if (plik.is_open()) {
+		int ascii[128] = { 0 };
+		string zdanie;
+		while (!plik.eof()) {
+			getline(plik,zdanie);
+			for (int i = 0; i < zdanie.length(); i++) {
+				ascii[(int)zdanie[i]]++;
+			}
 		}
+		int ile = 0, ktore = 0;
+		for (int i = 0; i < 128; i++) {
+			if (ascii[i] > ile) {
+				ktore = i;
+				ile = ascii[i];
+			}
+		}
+		cout << "Najwiecej : " << (char)ktore;
 	}
-	cout<<"Najwiecej : "<<(char)ktore;
+	else cout << "Nie udalo sie otworzyc!" << endl;
 }
